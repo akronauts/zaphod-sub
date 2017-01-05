@@ -23,6 +23,8 @@ void setup (void)
 void loop(){
   mpu.get_values();
 
+  for (int i=0; i < 1000; ++i)
+  {
   logFile.write(timer.read());
   logFile.write(",");
   logFile.write(mpu.data.accX);
@@ -37,4 +39,7 @@ void loop(){
   logFile.write(",");
   logFile.write(mpu.data.gyZ);
   logFile.write("\n");
+  logFile.flush();
+}
+logFile.close();
 }
