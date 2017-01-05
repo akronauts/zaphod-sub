@@ -2,9 +2,9 @@
 #include "sd.h"
 #include <SPI.h>
 
-File sd_init()
+void Sd::sd_init()
 {
-  // start SPI with CS on pin 4
+  // start SPI with CS on the appropriate pin
   if (!SD.begin(CS_PIN))
   {
     Serial.println("Error initializing SD card");
@@ -12,7 +12,7 @@ File sd_init()
   Serial.println("SD card initialized.");
 
   // get a unique filename
-  String filename = "";
+  filename = "";
   for (int i=0; true ;++i)
   {
     filename = FILE_NAME + String(i) + ".txt";
@@ -32,6 +32,38 @@ File sd_init()
   {
     Serial.println("Created file " + filename + ".");
   }
+}
 
-  return logFile;
+void Sd::write_str(String s)
+{
+  File logFile = SD.open(filename, FILE_WRITE);
+
+  char cbuff[50];
+  s.toCharArray(cbuff, 50);
+  logFile.write(cbuff);
+  logFile.flush();
+  logFile.close();
+}
+
+void Sd::write_int(int x)
+{
+  File logFile = SD.open(filename, FILE_WRITE);
+  char cbuff[50];
+
+  String(x).toCharArray(cbuff, 50);
+  logFile.write(cbuff);
+  logFile.flush();
+  logFile.close();
+}
+
+void Sd::write_long(long x)
+{
+  File logFile = SD.open(filename, FILE_WRITE);
+
+  char cbuff[50];
+
+  String(x).toCharArray(cbuff, 50);
+  logFile.write(cbuff);
+  logFile.flush();
+  logFile.close();
 }
