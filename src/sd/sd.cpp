@@ -32,6 +32,7 @@ void Sd::sd_init()
   {
     Serial.println("Created file " + filename + ".");
   }
+  logFile.close(); 
 }
 
 void Sd::write_str(String s)

@@ -1,7 +1,7 @@
 #include <SD.h>
 
 #define FILE_NAME "test"
-#define CS_PIN 53
+#define CS_PIN 10
 
 class Sd
 {

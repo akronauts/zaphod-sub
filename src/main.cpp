@@ -26,8 +26,8 @@ void update_clk()
 
 void setup (void)
 {
-  Serial.begin(115200);
-  while (!Serial);
+  //Serial.begin(115200);
+  //while (!Serial);
 
   // initialize the sd card
   sd.sd_init();
